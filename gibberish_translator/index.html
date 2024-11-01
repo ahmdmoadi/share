@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+        p{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="hidden">
+            <input type="text" name="" id="key" placeholder="key" autocomplete="off">
+            <input type="text" name="" id="value" placeholder="value" autocomplete="off">
+            <button id="btn">Add</button>
+        <br>
+        <output>
+            <label for="ta">current array</label><textarea name="" id="ta"></textarea>
+        </output>
+    </div>
+
+    <fieldset>
+        <legend>a;vh ==> شكرا</legend>
+        <input type="text" id="ie" autocomplete="off"><button id="be">Convert</button><br>
+        output here: &equals;&gt;<p id="oe"></p>&lt;&equals;
+    </fieldset>
+    <fieldset>
+        <legend>شكرا ==> a;vh</legend>
+        <input type="text" id="ia" autocomplete="off"><button id="ba">حول</button><br>
+        output here: &equals;&gt;<p id="oa"></p>&lt;&equals;
+    </fieldset>
+
+    <script>
+        document.body.addEventListener("keyup",({key})=>{
+            if(key==="Enter"){
+                btn.click();
+            }
+        })
+
+        let grand_0 = [];
+
+        btn.addEventListener("click",e=>{
+            grand_0.push([[key.value,value.value]]);
+            ta.innerText=JSON.stringify(grand_0.map(e=>{
+                return Object.fromEntries(e);
+            }));
+            key.value="";
+            value.value="";
+            key.focus();
+        });
+
+        let grand = [];
+        let rgrand = [];
+
+        let en = "`qwertyuiop[]asdfghjkl;'zxcvbnm,./";
+        let ar = "ذضصثقفغعهخحجدشسيبلاتنمكطئءؤرلاىةوزظ";
+        
+        for(let i=0;i<34;i++){
+            grand.push([en[i], ar[i]]);
+        }
+
+        grand=Object.fromEntries(grand)
+        rgrand=Object.fromEntries(Object.entries(grand).map(sa=>{return [sa[1], sa[0]]}));
+
+        be.onclick=_=>{oe.innerText=ie.value.split("").map(__=>grand[__]).join("")}
+        ba.onclick=_=>{oa.innerText=ia.value.split("").map(__=>rgrand[__]).join("")}
+    </script>
+</body>
+</html>
